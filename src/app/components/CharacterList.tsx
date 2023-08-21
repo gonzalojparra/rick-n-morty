@@ -3,6 +3,8 @@
 import { useEffect, useState } from "react"
 import { Pagination } from "@nextui-org/react";
 
+import { useSearchContext } from "../context/SearchContext";
+
 import Character from './Character';
 
 import type { CharacterInterface } from '../types';
@@ -24,16 +26,23 @@ export function NavPagination({ page, setPage }: { page: number, setPage: (page:
 export default function CharacterList() {
   const [characters, setCharacters] = useState([]);
   const [page, setPage] = useState(1);
+  const { searchQuery } = useSearchContext();
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await fetch(`https://rickandmortyapi.com/api/character/?page=${page}`);
+      let apiUrl = `https://rickandmortyapi.com/api/character/?page=${page}`;
+
+      if(searchQuery) {
+        apiUrl += `&name=${searchQuery}`;
+      };
+
+      const res = await fetch(apiUrl);
       const data = await res.json();
       setCharacters(data.results);
     };
 
     fetchData();
-  }, [page]);
+  }, [page, searchQuery]);
 
   return (
     <section>

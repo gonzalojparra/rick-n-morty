@@ -17,10 +17,11 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className='dark'>
+    <html lang="es" className='dark'>
       <body className={inter.className}>
         <Providers>
           {children}
+        <footer className='flex items-center justify-center'>Con ♥️ por Gonza</footer>
         </Providers>
       </body>
     </html>

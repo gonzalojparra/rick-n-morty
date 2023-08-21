@@ -10,7 +10,7 @@ export default function Character({ character }: { character: CharacterInterface
           <h4 className="font-bold text-large">{character.name}</h4>
           <small className="text-default-500">{character.status} - {character.species}</small>
         </CardHeader>
-        <CardBody className="overflow-visible py-2">
+        <CardBody className="overflow-visible">
           <Image
             alt={character.name}
             className="object-cover rounded-xl"
@@ -19,7 +19,6 @@ export default function Character({ character }: { character: CharacterInterface
             isBlurred
           />
           <p className="mt-4 font-normal">{character.origin.name}</p>
-          
         </CardBody>
       </Card>
     </div>
